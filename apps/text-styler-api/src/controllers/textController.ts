@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { LlmService } from '../services/llmService';
 import { ImprovedTextResponse } from '../types';
+import { OperationalError } from '../utils/errorHandler';
 
 export class TextController {
   private llmService: LlmService;
@@ -14,8 +15,7 @@ export class TextController {
       const textToImprove = req.query.text as string;
 
       if (!textToImprove || typeof textToImprove !== 'string' || textToImprove.trim() === '') {
-        res.status(400).json({ error: 'Query parameter "text" is required and must be a non-empty string.' });
-        return;
+        return next(new OperationalError('Query parameter "text" is required and must be a non-empty string.', 400));
       }
 
       const improvedText = await this.llmService.improveText(textToImprove);
@@ -23,6 +23,7 @@ export class TextController {
       const response: ImprovedTextResponse = {
         improved_text: improvedText,
       };
+      
       res.status(200).json(response);
     } catch (error) {
       next(error);
