@@ -69,6 +69,7 @@ The primary goal of this application is to provide a REST endpoint that:
     *Note: `.env` files are ignored by Git (ensure `.env` is in your `.gitignore` file).*
 
 ### Development
+Make sure to first copy .env.example to .env and fill in the values.
 
 To run the `text-styler-api` in development mode (with auto-reloading):
 
