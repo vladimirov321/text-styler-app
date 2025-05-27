@@ -5,7 +5,12 @@
     "scripts": {
         "build": "tsc",
         "dev": "nodemon --watch src --watch tsconfig.json --exec \"ts-node\" src/index.ts",
-        "start": "node dist/index.js"
+        "start": "node dist/index.js",
+        "test": "cross-env NODE_ENV=test mocha",
+        "test:unit": "npm test -- --grep \"Unit Tests\"",
+        "test:integration": "npm test -- --grep \"Integration Tests\"",
+        "test:coverage": "nyc npm test",
+        "test:watch": "npm test -- --watch"
     },
     "dependencies": {
         "dotenv": "^16.0.0",
@@ -14,6 +19,18 @@
         "openai": "^4.0.0"
     },
     "devDependencies": {
-        "@types/express": "^4.17.0"
+        "@istanbuljs/nyc-config-typescript": "^1.0.2",
+        "@types/chai": "^4.3.20",
+        "@types/express": "^4.17.0",
+        "@types/mocha": "^9.1.1",
+        "@types/sinon": "^10.0.20",
+        "@types/supertest": "^2.0.16",
+        "chai": "^4.5.0",
+        "cross-env": "^7.0.3",
+        "mocha": "^10.8.2",
+        "nyc": "^15.1.0",
+        "sinon": "^14.0.2",
+        "supertest": "^6.3.4",
+        "ts-node": "^10.9.2"
     }
 }

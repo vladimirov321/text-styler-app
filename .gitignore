@@ -13,3 +13,7 @@ out/
 .env
 .env.*
 !.env.example
+
+# Test coverage
+.nyc_output/
+coverage/

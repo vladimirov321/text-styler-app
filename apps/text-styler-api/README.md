@@ -20,9 +20,8 @@ The primary goal of this application is to provide a REST endpoint that:
 -   [ ] Returns JSON with the improved text: `{"improved_text": "..."}`.
 -   [ ] Integration with an LLM (e.g., OpenAI API) for text improvement.
 
-**Bonus Tasks:**
+**Bonus Task:**
 -   [ ] **Caching:** Implement caching to avoid redundant LLM calls for identical input text.
--   [ ] **Queue-based Interface:** (To be discussed/implemented if time permits) Design or implement a queue-based interface for the text improvement logic.
 
 ## 🛠️ Tech Stack
 
@@ -96,3 +95,36 @@ To build the `text-styler-api` for production:
 After building, you can start the API:
 ```bash
 npm run start:api
+```
+
+## 🧪 Testing
+
+The API includes a comprehensive test suite with both unit and integration tests.
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run only unit tests
+npm run test:unit
+
+# Run only integration tests
+npm run test:integration
+
+# Run tests with coverage report
+npm run test:coverage
+
+# Run tests in watch mode during development
+npm run test:watch
+```
+
+### Test Structure
+
+- **Unit Tests**: Tests for individual components in isolation
+  - Services: Test individual service classes
+  - Controllers: Test API controller logic
+  
+- **Integration Tests**: Tests for components working together
+  - Routes: Test API endpoints with simulated HTTP requests
