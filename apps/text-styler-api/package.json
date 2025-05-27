@@ -10,7 +10,9 @@
         "test:unit": "npm test -- --grep \"Unit Tests\"",
         "test:integration": "npm test -- --grep \"Integration Tests\"",
         "test:coverage": "nyc npm test",
-        "test:watch": "npm test -- --watch"
+        "test:watch": "npm test -- --watch",
+        "lint": "eslint --ext .ts,.js src/ tests/",
+        "lint:strict": "eslint --ext .ts,.js src/ tests/ --max-warnings=0"
     },
     "dependencies": {
         "dotenv": "^16.0.0",
@@ -25,8 +27,14 @@
         "@types/mocha": "^9.1.1",
         "@types/sinon": "^10.0.20",
         "@types/supertest": "^2.0.16",
+        "@typescript-eslint/eslint-plugin": "^5.62.0",
+        "@typescript-eslint/parser": "^5.62.0",
         "chai": "^4.5.0",
         "cross-env": "^7.0.3",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^10.1.5",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-node": "^11.1.0",
         "mocha": "^10.8.2",
         "nyc": "^15.1.0",
         "sinon": "^14.0.2",

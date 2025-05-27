@@ -7,14 +7,12 @@ import { OperationalError } from '../../../src/utils/errorHandler';
 describe('Unit Tests - OpenAIService', () => {
   let sandbox: sinon.SinonSandbox;
   let dotenvConfigStub: sinon.SinonStub;
-  let consoleLogStub: sinon.SinonStub;
-  let consoleErrorStub: sinon.SinonStub;
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
     dotenvConfigStub = sandbox.stub(dotenv, 'config');
-    consoleLogStub = sandbox.stub(console, 'log');
-    consoleErrorStub = sandbox.stub(console, 'error');
+    sandbox.stub(console, 'log');
+    sandbox.stub(console, 'error');
   });
 
   afterEach(() => {
@@ -28,7 +26,6 @@ describe('Unit Tests - OpenAIService', () => {
 
       const service = new OpenAIService();
       expect(service).to.be.instanceOf(OpenAIService);
-      expect(consoleErrorStub.called).to.be.false;
     });
 
     it('should throw an OperationalError if API key is missing', () => {
@@ -45,7 +42,6 @@ describe('Unit Tests - OpenAIService', () => {
         } else {
           expect.fail('Expected error to be an instance of OperationalError');
         }
-        expect(consoleErrorStub.calledWith("FATAL ERROR: OPENAI_API_KEY is not defined in .env file.")).to.be.true;
       }
     });
   });

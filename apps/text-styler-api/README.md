@@ -128,3 +128,20 @@ npm run test:watch
   
 - **Integration Tests**: Tests for components working together
   - Routes: Test API endpoints with simulated HTTP requests
+
+## 🔍 Code Quality
+
+The project uses ESLint to maintain code quality and consistent style.
+
+### Linting
+
+```bash
+# Run linter (allows warnings, does not fail on warnings)
+npm run lint
+
+# Run linter in strict mode (fails if there are any warnings)
+npm run lint:strict
+```
+
+- `npm run lint` is intended for development and will report warnings but not fail the build.
+- `npm run lint:strict` is intended for CI or production and will fail if any warnings are present, ensuring the highest code quality.
