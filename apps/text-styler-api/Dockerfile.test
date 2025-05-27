@@ -1,0 +1,19 @@
+# Base Node.js image for testing
+FROM node:18-alpine
+
+# Create app directory
+WORKDIR /app
+
+# Copy package files and install dependencies
+COPY package*.json ./
+# Using npm install instead of npm ci to avoid package-lock issues
+RUN npm install
+
+# Copy the rest of the application
+COPY . .
+
+# Set environment for testing
+ENV NODE_ENV=test
+
+# Default command to run tests
+CMD ["npm", "test"]

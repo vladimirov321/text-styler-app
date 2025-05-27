@@ -145,3 +145,46 @@ npm run lint:strict
 
 - `npm run lint` is intended for development and will report warnings but not fail the build.
 - `npm run lint:strict` is intended for CI or production and will fail if any warnings are present, ensuring the highest code quality.
+
+## 🐳 Docker
+
+The project is containerized with Docker for easy deployment and consistent environments.
+
+### Docker Setup
+
+```bash
+# Build and start the container
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop the container
+docker-compose down
+```
+
+### Environment Variables
+
+Before running with Docker, ensure you have a `.env` file with your OpenAI API key:
+
+```
+OPENAI_API_KEY=your-api-key-here
+```
+
+### Building for Production
+
+```bash
+# Build the Docker image
+docker build -t text-styler-api .
+
+# Run the container
+docker run -p 3000:3000 --env-file .env text-styler-api
+```
+
+### Running Tests in Docker
+
+```bash
+# Run tests in a Docker container
+docker build -t text-styler-api-test . -f Dockerfile.test
+docker run --rm text-styler-api-test npm test
+```
