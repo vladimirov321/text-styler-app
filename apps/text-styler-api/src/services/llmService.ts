@@ -2,6 +2,7 @@ import { OpenAIService } from './openaiService';
 import { PromptService } from './promptService';
 import { CacheService } from './cacheService';
 import { llmConfig } from '../config/llmConfig';
+import { OperationalError } from '../utils/errorHandler';
 
 export class LlmService {
   private openaiService: OpenAIService;
@@ -52,7 +53,7 @@ export class LlmService {
       if (error.response) {
         console.error("OpenAI API response error:", error.response.data);
       }
-      throw new Error("Failed to improve text using LLM. " + (error.message || ''));
+      throw new OperationalError("Failed to improve text using LLM. " + (error.message || ''), 500);
     }
   }
 }

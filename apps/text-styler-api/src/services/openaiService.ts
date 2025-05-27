@@ -1,6 +1,7 @@
 import { OpenAI } from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 import dotenv from 'dotenv';
+import { OperationalError } from '../utils/errorHandler';
 
 dotenv.config();
 
@@ -11,7 +12,7 @@ export class OpenAIService {
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
       console.error("FATAL ERROR: OPENAI_API_KEY is not defined in .env file.");
-      throw new Error("OpenAI API key is not configured.");
+      throw new OperationalError("OpenAI API key is not configured.", 500);
     }
     this.openai = new OpenAI({ apiKey });
     console.log('OpenAIService initialized with OpenAI client.');
